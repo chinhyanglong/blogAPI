@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  huyblog:
+    image: ${DOCKER_REGISTRY-}huyblog
+    build:
+      context: .
+      dockerfile: Dockerfile
