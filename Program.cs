@@ -14,8 +14,11 @@ namespace huyblog
     {
         //public static void Main(string[] args)
         //{
-        //    CreateHostBuilder(args).Build().Run();
+        //    CreateWebHostBuilder(args).Build().Run();
         //}
+        //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        //   WebHost.CreateDefaultBuilder(args)
+        //       .UseStartup<Startup>();
 
         //public static IHostBuilder CreateHostBuilder(string[] args) =>
         //    Host.CreateDefaultBuilder(args)
@@ -26,22 +29,16 @@ namespace huyblog
         ///
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args)
-                .UseKestrel()
-                .UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT"))
-                .Build()
-                .Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var port = Environment.GetEnvironmentVariable("PORT");
 
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging((logging) =>
-                {
-                    logging.AddDebug();
-                    logging.AddConsole();
-                })
-                .UseStartup<Startup>();
+            return WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseUrls("http://*:" + port);
+        }
         ///
     }
 }

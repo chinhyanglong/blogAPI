@@ -8,11 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace huyblog.Data
 {
-    public class ApplicationUser : IdentityUser
-    {
-        
-    }
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         private static bool _Created = false;
 

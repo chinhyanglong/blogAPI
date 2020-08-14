@@ -35,11 +35,12 @@ namespace huyblog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
             // For Identity  
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
@@ -103,7 +104,7 @@ namespace huyblog
 
                 c.EnableAnnotations();
             });
-            // LearningContent Services
+            // PostServices Services
             services.AddTransient<IPostServices, PostServices>();
         }
 
