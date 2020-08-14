@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using huyblog.Models.Base;
+using huyblog.Models.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,22 +10,9 @@ namespace huyblog.Data
 {
     public class ApplicationUser : IdentityUser
     {
-        public int UserId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public bool Status { get; set; }
-
-        public int? UserTypeId { get; set; }
-        public DateTime? ModifyDate { get; set; }
+        
     }
-    public class ApplicationUserLogin : IdentityUserLogin<string>
-    {
-        public DateTime? LastLogin { get; set; }
-    }
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, ApplicationUserLogin, IdentityRoleClaim<string>, IdentityUserToken<string>>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         private static bool _Created = false;
 
@@ -43,6 +31,9 @@ namespace huyblog.Data
         {
 
         }
+        //DBSet
+        public DbSet<Post> Posts { get; set; }
+        //
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

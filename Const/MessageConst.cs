@@ -23,4 +23,10 @@ namespace huyblog.Const
         public static string ImportFileComplete = "Import file completed.";
         public static string ImportFileFail = "Import file Fail.";
     }
+    public class Status
+    {
+        public static string SUCCESS = "Success";
+        public static string FAILED = "Failed";
+        public static string PENDING = "Pending";
+    }
 }
